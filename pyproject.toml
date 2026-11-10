@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "channels-jwt-subprotocol"
+version = "1.0.0"
+description = "Authenticate Django Channels WebSockets with a JWT sent as a subprotocol, so the token never lands in the URL or in access logs."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "TheLoops", email = "support@theloops.live" }]
+keywords = ["django", "channels", "websocket", "jwt", "simplejwt", "authentication", "subprotocol"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Framework :: Django",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = ["channels>=4.0", "Django>=4.2"]
+
+[project.optional-dependencies]
+simplejwt = ["djangorestframework-simplejwt>=5.0"]
+test = ["pytest>=7", "djangorestframework-simplejwt>=5.0", "daphne>=4.0", "uvicorn>=0.30", "websockets>=14"]
+
+[project.urls]
+Homepage = "https://theloops.live/engineering/channels-jwt-subprotocol"
+Source = "https://github.com/YouPanel/channels-jwt-subprotocol"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+markers = ["live: starts a real ASGI server (Daphne or Uvicorn) on a local port"]
